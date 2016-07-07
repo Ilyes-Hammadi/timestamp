@@ -2,8 +2,9 @@ var express = require('express');
 var time = require('./time');
 
 var app = express();
-var port = process.argv[2] || 8000
 
+// Set the port
+app.set('port', (process.env.PORT || 5000));
 // Setup the templates
 app.set('view engine', 'pug');
 app.set('views', './templates')
@@ -20,6 +21,6 @@ app.get('/:date', (req, res) => {
 })
 
 // Running the server
-app.listen(port, () => {
-  console.log('Server runing on port ' + port);
+app.listen(app.get('port'), () => {
+  console.log('Server runing on port ' + app.get('port'));
 })
